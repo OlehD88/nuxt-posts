@@ -14,7 +14,7 @@ const dateToShow = getFormattedPostDate(post.published_date)
 
 <template>
   <div class="post-card rounded-lg p-4 cursor-pointer">
-    <div class="flex items-center mb-2">
+    <div class="flex items-center mb-2 h-12">
       <img :src="`${platformIcon}`" alt="Platform Icon" class="w-8 h-8 mr-2" />
       <div>
         <span class="post-card-title line-height-1">
