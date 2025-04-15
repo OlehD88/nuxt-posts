@@ -1,1 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+:root {
+	--primary-color: #ffffff;
+	--secondary-color: #F48403;
+	--main-bg: #2C2930;
+	--secondary-bg: #232229;
+}
+
+.dark-section {
+	background: var(--secondary-bg)
+}
+
+.accent-color {
+	color: var(--secondary-color);
+}
+
+body {
+	color: var(--primary-color);
+	background: var(--main-bg);
+	font-family: Roboto, Helvetica, sans-serif;
+}
