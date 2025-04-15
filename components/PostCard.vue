@@ -1,20 +1,32 @@
 <script lang="ts" setup>
 import type { Post } from '~/types/posts'
+import { Platform } from '~/types/posts'
+import { getFormattedPostDate } from '~/utils/date'
 
 const { post } = defineProps<{ post: Post }>()
-const titleLine = `${post.title} - ${post.headline}`
-const statusLine = post.meta?.author ? `${post.status} by ${post.meta.author}` : post.status
+const platformIcons = {
+  [Platform.Facebook]: 'facebook-icon.svg',
+  [Platform.LinkedIn]: 'linkedin-icon.svg',
+}
+const platformIcon = `/icons/${platformIcons[post.platform]}`
+const dateToShow = getFormattedPostDate(post.published_date)
 </script>
 
 <template>
-  <div class="post-card dark-bg rounded-lg p-4 cursor-pointer">
-    <div>
-      <span>{{ post.platform }}</span>
-      <span>{{ titleLine }}</span>
+  <div class="post-card rounded-lg p-4 cursor-pointer">
+    <div class="flex items-center mb-2">
+      <img :src="`${platformIcon}`" alt="Platform Icon" class="w-8 h-8 mr-2" />
+      <div>
+        <span class="post-card-title line-height-1">
+          {{ post.title || 'No title' }}
+        </span>
+        <span class="text-xs">{{ post.headline }}</span>
+      </div>
     </div>
-    <div>{{ statusLine }}</div>
+    <div>Status: {{ post.status }}</div>
+    <div>Author: {{ post.meta.author || 'Unknown' }}</div>
     <div>
-      <span>{{ post.published_date }}</span>
+      Published: <span class="accent-color">{{ dateToShow }}</span>
     </div>
   </div>
 </template>
@@ -22,5 +34,16 @@ const statusLine = post.meta?.author ? `${post.status} by ${post.meta.author}` :
 <style scoped>
 .post-card {
   border: 1px solid var(--secondary-color);
+}
+.post-card:hover {
+  background-color: var(--secondary-bg);
+}
+
+.post-card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
