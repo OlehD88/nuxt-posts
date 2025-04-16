@@ -10,7 +10,7 @@ const optionsWithNone = [{ label: 'None', value: 'none' }, ...platformOptions]
 const selectedOption = computed(() => postsStore.filters.platform)
 
 const updatePlatformFilter = (value: string) => {
-  postsStore.updateFilters('platform', value === 'none' ? null : value)
+  postsStore.updateFilters({ platform: value === 'none' ? null : value })
 }
 </script>
 

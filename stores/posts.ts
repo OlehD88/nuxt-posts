@@ -2,7 +2,7 @@ import type { Platform, Post } from '~/types/posts'
 
 type Filters = {
   platform: string | null
-  search: string
+  search: string | null
 }
 
 export const usePostsStore = defineStore('postsStore', {
@@ -43,24 +43,35 @@ export const usePostsStore = defineStore('postsStore', {
         search: search || '',
       }
     },
-    updateQueryFilterParams(param: keyof Filters, value: string | null) {
+    updateQueryFilterParams(filters: Partial<Record<keyof Filters, string | null>>) {
       const { query } = useRoute()
       const router = useRouter()
       const updatedQuery = { ...query }
 
-      if (!value) {
-        delete updatedQuery[param]
-      } else {
-        updatedQuery[param] = value
-      }
+      const keys = Object.keys(filters) as Array<keyof Filters>
+      keys.forEach((key) => {
+        const value = filters[key]
+        if (!value) {
+          delete updatedQuery[key]
+        } else {
+          updatedQuery[key] = value
+        }
+      })
+
       router.replace({ query: updatedQuery })
     },
-    updateFilters(filter: keyof Filters, value: string | null) {
-      this.updateQueryFilterParams(filter, value)
+    updateFilters(filters: Partial<Record<keyof Filters, string | null>>) {
+      this.updateQueryFilterParams(filters)
       this.filters = {
         ...this.filters,
-        [filter]: value,
+        ...filters,
       }
+    },
+    clearFilters() {
+      this.updateFilters({
+        platform: null,
+        search: '',
+      })
     },
   },
 })
