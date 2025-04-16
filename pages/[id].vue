@@ -54,7 +54,10 @@ const cleanHtmlContent = post?.content ? DOMPurify.sanitize(post.content) : ''
     </div>
 
     <div v-else class="text-center">
-      <p>Post not found. Please check the URL or go back to the homepage.</p>
+      <p>
+        Post not found. Please check the URL or go back to the
+        <NuxtLink to="/" class="accent-color">homepage</NuxtLink>.
+      </p>
     </div>
   </section>
 </template>

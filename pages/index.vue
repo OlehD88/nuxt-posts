@@ -11,8 +11,7 @@ const someFiltersAvailable = computed(() => {
 })
 
 const navigateToPostPage = (postId: number) => {
-  const { query } = useRoute()
-  navigateTo({ path: `/${postId}`, query })
+  navigateTo(`/${postId}`)
 }
 
 const onClearFilters = () => {

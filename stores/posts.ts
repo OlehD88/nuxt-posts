@@ -43,7 +43,10 @@ export const usePostsStore = defineStore('postsStore', {
         search: search || '',
       }
     },
-    updateQueryFilterParams(filters: Partial<Record<keyof Filters, string | null>>) {
+    updateQueryFilterParams(
+      filters: Partial<Record<keyof Filters, string | null>>,
+      skipPreserve = false,
+    ) {
       const { query } = useRoute()
       const router = useRouter()
       const updatedQuery = { ...query }
@@ -58,20 +61,28 @@ export const usePostsStore = defineStore('postsStore', {
         }
       })
 
+      if (skipPreserve) {
+        updatedQuery.skipPreserve = 'true'
+      }
+
+      console.log('updatedQuery', updatedQuery)
       router.replace({ query: updatedQuery })
     },
-    updateFilters(filters: Partial<Record<keyof Filters, string | null>>) {
-      this.updateQueryFilterParams(filters)
+    updateFilters(filters: Partial<Record<keyof Filters, string | null>>, skipPreserve = false) {
+      this.updateQueryFilterParams(filters, skipPreserve)
       this.filters = {
         ...this.filters,
         ...filters,
       }
     },
     clearFilters() {
-      this.updateFilters({
-        platform: null,
-        search: '',
-      })
+      this.updateFilters(
+        {
+          platform: null,
+          search: '',
+        },
+        true,
+      )
     },
   },
 })
