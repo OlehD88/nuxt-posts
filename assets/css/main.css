@@ -3,9 +3,10 @@
 
 :root {
 	--primary-color: #ffffff;
-	--secondary-color: #F48403;
-	--main-bg: #2C2930;
-	--secondary-bg: #232229;
+	--secondary-color: #e4a42d;
+	--main-bg: #1d2334;
+	/* --secondary-bg: #1d2334; */
+	--secondary-bg: #0a0f1f;
 }
 
 .dark-bg {
