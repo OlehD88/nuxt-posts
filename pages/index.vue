@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PostCard, SearchInput } from '#components'
+import { PostCard, SearchInput, PlatformDropdown } from '#components'
 
 const { posts } = usePostsStore()
 const navigateToPostPage = (postId: number) => {
@@ -12,8 +12,9 @@ const handlePostsSearch = (query: string) => {
 
 <template>
   <section>
-    <div class="p-4">
+    <div class="p-4 flex justify-start items-center gap-2">
       <SearchInput @update:query="handlePostsSearch" />
+      <PlatformDropdown />
     </div>
     <div class="flex justify-center items-start flex-wrap">
       <div v-for="post in posts" :key="post.id" class="w-full sm:w-1/2 lg:w-1/3 p-4">

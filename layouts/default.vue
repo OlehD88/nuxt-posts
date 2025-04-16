@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
+const postsStore = usePostsStore()
 </script>
 
 <template>
@@ -7,7 +8,8 @@ import AppHeader from '@/components/AppHeader.vue'
     <AppHeader />
     <main class="my-8 flex justify-center">
       <div class="container">
-        <slot />
+        <div v-if="postsStore.loading" class="text-center">Loading</div>
+        <slot v-else />
       </div>
     </main>
   </div>

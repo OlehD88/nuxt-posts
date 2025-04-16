@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const postsStore = usePostsStore()
 
-await callOnce(postsStore.fetchPosts)
+callOnce(postsStore.fetchPosts)
 </script>
 
 <template>

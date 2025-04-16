@@ -15,7 +15,6 @@ const platformIcon = getPlatformIconURL(post?.platform)
 // Sanitize the HTML content to prevent XSS attacks
 // We can specify what type of html is allowed here
 const cleanHtmlContent = post?.content ? DOMPurify.sanitize(post.content) : ''
-console.log(post)
 </script>
 
 <template>

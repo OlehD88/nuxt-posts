@@ -1,18 +1,16 @@
-import tailwindcss from "@tailwindcss/vite"
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@pinia/nuxt'],
+  modules: ['@nuxt/eslint', '@pinia/nuxt', '@vueuse/nuxt'],
   css: ['~/assets/css/main.css'],
   app: {
     head: {
       title: 'Nuxt Posts',
-    }
+    },
   },
-  vite: { 
-    plugins: [
-      tailwindcss()
-    ]
-  }
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

@@ -6,7 +6,7 @@ const getPosts = (): Promise<Post[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(postsData as Post[])
-    }, 500)
+    }, 2000)
   })
 }
 
