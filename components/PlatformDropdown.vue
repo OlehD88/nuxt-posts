@@ -9,11 +9,8 @@ const platformOptions = postsStore.platforms.map((platform) => ({
 const optionsWithNone = [{ label: 'None', value: 'none' }, ...platformOptions]
 const selectedOption = computed(() => postsStore.filters.platform)
 
-const updatePlatformFilter = (value: string | null) => {
-  if (value === 'none') {
-    value = null
-  }
-  postsStore.updateFilters({ platform: value })
+const updatePlatformFilter = (value: string) => {
+  postsStore.updateFilters('platform', value === 'none' ? null : value)
 }
 </script>
 

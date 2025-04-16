@@ -1,19 +1,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { debounce } from '~/utils/general'
+const postsStore = usePostsStore()
 
-const emit = defineEmits<{
-  (e: 'update:query', query: string): void
-}>()
+const searchQuery = ref(postsStore.filters.search || '')
 
-const searchQuery = ref('')
-
-const emitSearch = debounce((query: string) => {
-  emit('update:query', query)
+const updateSearch = debounce((query: string) => {
+  postsStore.updateFilters('search', query)
 }, 500)
 
 const onInput = () => {
-  emitSearch(searchQuery.value)
+  updateSearch(searchQuery.value)
 }
 </script>
 
@@ -22,7 +19,7 @@ const onInput = () => {
     <input
       v-model="searchQuery"
       type="text"
-      placeholder="Search..."
+      placeholder="Search by title"
       class="w-full md:max-w-md px-4 py-2 rounded-md outline-none border-1 border-(--secondary-color)"
       @input="onInput"
     />

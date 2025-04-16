@@ -4,6 +4,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default withNuxt([eslintPluginPrettierRecommended], {
   rules: {
-    'vue/html-self-closing': "off"
-  }
+    'vue/html-self-closing': 'off',
+    '@typescript-eslint/no-dynamic-delete': 'off',
+  },
 })
