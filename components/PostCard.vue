@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 import type { Post } from '~/types/posts'
-import { Platform } from '~/types/posts'
-import { getFormattedPostDate } from '~/utils/date'
+import { getFormattedPostDate, getPlatformIconURL } from '~/utils'
 
 const { post } = defineProps<{ post: Post }>()
-const platformIcons = {
-  [Platform.Facebook]: 'facebook-icon.svg',
-  [Platform.LinkedIn]: 'linkedin-icon.svg',
-}
-const platformIcon = `/icons/${platformIcons[post.platform]}`
+const platformIcon = getPlatformIconURL(post.platform)
 const dateToShow = getFormattedPostDate(post.published_date)
 </script>
 
