@@ -36,6 +36,7 @@ For starting a project you need to do these 2 steps:
 - [ ] Introduce filtering by post status to provide more refined filtering options.
 - [ ] Implement pagination or lazy loading to handle a larger number of posts efficiently.
 - [ ] Add a sorting feature to allow users to sort posts by various criteria, such as date, platform, author, or title.
+- [ ] Add a proper image gallery with consistent image sizes and an optional slider for better navigation and user experience. This will ensure that images are displayed uniformly and provide a more interactive way to browse through multiple images.
 - [ ] Write unit tests for key components and utility functions to ensure code reliability and maintainability.
 - [ ] Integrate Storybook to create a component library for better documentation and reusability.
 

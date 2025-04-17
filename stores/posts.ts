@@ -61,11 +61,10 @@ export const usePostsStore = defineStore('postsStore', {
         }
       })
 
-      if (skipPreserve) {
+      if (skipPreserve || Object.keys(updatedQuery).length === 0) {
         updatedQuery.skipPreserve = 'true'
       }
 
-      console.log('updatedQuery', updatedQuery)
       router.replace({ query: updatedQuery })
     },
     updateFilters(filters: Partial<Record<keyof Filters, string | null>>, skipPreserve = false) {

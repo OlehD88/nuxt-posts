@@ -38,10 +38,10 @@ const showNoResults = computed(() => {
 <template>
   <section>
     <div class="p-4 flex flex-col sm:flex-row justify-start items-center gap-2 md:gap-4">
-      <div class="w-full sm:w-1/2 md:w-1/3 max-w-md">
+      <div class="w-full sm:w-1/3 max-w-md">
         <SearchInput ref="searchInputRef" />
       </div>
-      <div class="w-full sm:w-1/2 md:w-1/3 max-w-3xs">
+      <div class="w-full sm:w-1/3 max-w-3xs">
         <PlatformDropdown />
       </div>
       <div v-if="someFiltersAvailable">
@@ -53,7 +53,7 @@ const showNoResults = computed(() => {
         </button>
       </div>
     </div>
-    <div class="flex justify-center items-start flex-wrap">
+    <div class="flex justify-start items-start flex-wrap">
       <div v-for="post in filteredPosts" :key="post.id" class="w-full sm:w-1/2 lg:w-1/3 p-4">
         <PostCard :post="post" @:click="navigateToPostPage(post.id)" />
       </div>

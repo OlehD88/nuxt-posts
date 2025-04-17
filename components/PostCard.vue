@@ -13,7 +13,7 @@ const dateToShow = getFormattedPostDate(post.published_date)
       <img :src="`${platformIcon}`" alt="Platform Icon" class="w-8 h-8 mr-2" />
       <div>
         <span class="post-card-title line-height-1">
-          {{ post.title || 'No title' }}
+          {{ post.title || 'Untitled Post' }}
         </span>
         <span class="text-xs">{{ post.headline }}</span>
       </div>
