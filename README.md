@@ -43,6 +43,7 @@ For starting a project you need to do these 2 steps:
 ## Technology Used
 
 - ✅ TypeScript
-- ✅ NuxtJs
+- ✅ Vue.js
+- ✅ Nuxt
 - ✅ Pinia
 - ✅ Tailwind
