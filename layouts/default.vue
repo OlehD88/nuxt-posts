@@ -17,7 +17,9 @@ const errorHandler = (error: unknown) => {
           <div v-if="postsStore.loading" class="text-center">
             <img src="/images/spinner.svg" alt="Loading..." class="w-32 h-32 mx-auto mt-12" />
           </div>
-          <slot v-else />
+          <div v-show="!postsStore.loading">
+            <NuxtPage />
+          </div>
         </div>
       </main>
     </div>

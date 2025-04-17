@@ -36,7 +36,7 @@ const showNoResults = computed(() => {
 </script>
 
 <template>
-  <section>
+  <section v-if="!postsStore.loading">
     <div class="p-4 flex flex-col sm:flex-row justify-start items-center gap-2 md:gap-4">
       <div class="w-full sm:w-1/3 max-w-md">
         <SearchInput ref="searchInputRef" />

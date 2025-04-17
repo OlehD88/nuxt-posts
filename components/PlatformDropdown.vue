@@ -2,11 +2,13 @@
 import BaseDropdown from './BaseDropdown.vue'
 const postsStore = usePostsStore()
 
-const platformOptions = postsStore.platforms.map((platform) => ({
-  label: platform,
-  value: platform,
-}))
-const optionsWithNone = [{ label: 'None', value: 'none' }, ...platformOptions]
+const platformOptions = computed(() => {
+  const options = postsStore.platforms.map((platform) => ({
+    label: platform,
+    value: platform,
+  }))
+  return [{ label: 'None', value: 'none' }, ...options]
+})
 const selectedOption = computed(() => postsStore.filters.platform)
 
 const updatePlatformFilter = (value: string) => {
@@ -18,7 +20,7 @@ const updatePlatformFilter = (value: string) => {
   <BaseDropdown
     name="platform"
     placeholder-text="Select Platform"
-    :options="optionsWithNone"
+    :options="platformOptions"
     :selected-option="selectedOption"
     @update:selected-option="updatePlatformFilter"
   />
