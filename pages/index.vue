@@ -10,6 +10,18 @@ const someFiltersAvailable = computed(() => {
   return search || platform
 })
 
+const filteredPosts = computed(() => {
+  if (!someFiltersAvailable.value) return postsStore.posts
+
+  const { search, platform } = postsStore.filters
+
+  return postsStore.posts.filter((post) => {
+    const matchesSearch = search ? post.title?.toLowerCase().includes(search.toLowerCase()) : true
+    const matchesPlatform = platform ? post.platform === platform : true
+    return matchesSearch && matchesPlatform
+  })
+})
+
 const navigateToPostPage = (postId: number) => {
   navigateTo(`/${postId}`)
 }
@@ -18,6 +30,9 @@ const onClearFilters = () => {
   postsStore.clearFilters()
   searchInputRef?.value?.clearInput()
 }
+const showNoResults = computed(() => {
+  return filteredPosts.value.length === 0 && !postsStore.loading
+})
 </script>
 
 <template>
@@ -39,8 +54,11 @@ const onClearFilters = () => {
       </div>
     </div>
     <div class="flex justify-center items-start flex-wrap">
-      <div v-for="post in postsStore.posts" :key="post.id" class="w-full sm:w-1/2 lg:w-1/3 p-4">
+      <div v-for="post in filteredPosts" :key="post.id" class="w-full sm:w-1/2 lg:w-1/3 p-4">
         <PostCard :post="post" @:click="navigateToPostPage(post.id)" />
+      </div>
+      <div v-if="showNoResults" class="text-center text-xl w-full p-4">
+        No results found for the selected filters. Please adjust your filters and try again.
       </div>
     </div>
   </section>
